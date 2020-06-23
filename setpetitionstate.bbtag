@@ -1,5 +1,5 @@
-{if;{argslength};!=;2;Команда принимает следующие аргументы: номер петиции, новый статус рассмотрения{return}}
+{if;{argslength};<;2;Команда принимает следующие аргументы: номер петиции, новый статус рассмотрения{return}}
 {if;{args;0};>;{length;{get;_petitionstates}};Некорректный номер петиции!{return}}
 {if;{args;0};<;0;Некорректный номер петиции!{return}}
-{void;{splice;_petitionstates;{math;-;{args;0};1};1;{args;1}}}
-Статус обращения {args;0} успешно изменён на {args;1}
+{void;{splice;_petitionstates;{math;-;{args;0};1};1;{args;1;n}}}
+Статус обращения {args;0} успешно изменён на {args;1;n}
