@@ -1,0 +1,9 @@
+{set;~have;true}{for;~index;0;<;{length;{get;_bingousers}};{if;{get;_bingousers;{get;~index}};==;{userid;{args}};
+{set;~have;false}}}
+{if;{get;~have};{push;_bingousers;{userid;{args}}}
+{set;~tempbarrel;[]}
+{for;~in;1;<=;100;{push;~tempbarrel;{get;~in}}}
+{for;~indexxx;0;<;3;{set;~tempbingo;[]}
+{for;~index;0;<;{math;*;5;3};{set;~chislo;{randint;0;{math;-;99;{math;+;{math;*;{get;~indexxx};15};{get;~index}}}}}{push;~tempbingo;{get;~tempbarrel;{get;~chislo}}}
+{void;{splice;~tempbarrel;{get;~chislo};1}}}
+{push;_bingolists{get;~indexxx};{get;~tempbingo}}};Билет уже выдан!}

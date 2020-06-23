@@ -1,0 +1,1 @@
+{set;~array;{userroles;{args}}}{for;~index;0;<;{length;{userroles;{args}}};{rolecolor;{pop;~array}}, }

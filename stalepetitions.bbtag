@@ -1,0 +1,10 @@
+{set;~outputcnt;0}
+{set;~outputarr;[]}
+{
+    for;~i;0;<;{length;{get;_petitionstates}};1;
+        {if;{logic;&&;{bool;!=;{get;_petitionstates;{get;~i}};Сделано};{bool;!=;{get;_petitionstates;{get;~i}};Отклонено}};
+            {void;{increment;~outputcnt;1}}
+            {push;~outputarr;{math;+;{get;~i};1}: {get;_petitionstates;{get;~i}}{semi}{newline}}
+        }
+}
+{join;~outputarr;}

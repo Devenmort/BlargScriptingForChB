@@ -1,0 +1,2 @@
+{set;~petition_number;{math;-;{args};1}}
+{embed;{jsonset;{get;_petitions;{get;~petition_number}};footer.text;Статус рассмотрения: {get;_petitionstates;{get;~petition_number}};create}}

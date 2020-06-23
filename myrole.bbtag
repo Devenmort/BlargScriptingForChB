@@ -1,0 +1,7 @@
+{if;{args;0};==;name;{if;{get;_roleblacklist};contains;{lower;{args;1;n}};
+Такое название роли недопустимо;{for;~index;0;<;{length;{get;_myroleuser}};
+{if;{get;_myroleuser;{get;~index}};==;
+{userid};{rolesetname;{get;_myrole;{get;~index}};{args;1;n}}}}};
+{if;{args;0};==;color;{for;~index;0;<;{length;{get;_myroleuser}};
+{if;{get;_myroleuser;{get;~index}};==;
+{userid};{rolesetcolor;{get;_myrole;{get;~index}};{args;1;n}}}};Ошибка в синтаксисе}}

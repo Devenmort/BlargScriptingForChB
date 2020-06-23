@@ -1,0 +1,6 @@
+{edit;714226411388272802;716676799777603634;;{embedbuild;color:ea4b00;thumbnail.url:https://cdn.discordapp.com/attachments/716036028481273888/716635776183435364/blob_cool.png;
+description:Если у вас есть какие-либо идеи по развитию сервера, пожелания или замечания, то вы можете отправить модераторам сервера своё обращение через команду **?idea <текст обращения>**.
+
+Модераторы сервера:
+{set;~vachtery;{rolemembers;Вахтёр}}{for;~index;0;<;{length;{get;~vachtery}};{usermention;{get;~vachtery;{get;~index}}}{newline}}
+Призывать всех сразу можно в крайних случаях с помощью роли <@&632253362531991572>.}}

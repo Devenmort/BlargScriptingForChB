@@ -1,0 +1,9 @@
+{if;{args;0};==;add;{push;_roleblacklist;
+        {lower;{args;1;n}}};{if;{args;0};==;remove;
+    Удалено `{join;{splice;_roleblacklist;{indexof;{get;_roleblacklist};{lower;{args;1;n}}};1};}`
+    ;{if;{args;0};==;list;```{for;~index;0;<;{length;{get;_roleblacklist}};
+    {get;_roleblacklist;{get;~index}}{newline}
+}```
+}
+}
+}

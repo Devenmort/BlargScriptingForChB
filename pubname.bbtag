@@ -1,0 +1,1 @@
+{if;{get;_pubcooldown};{set;_pubcooldown;false}{timer;{set;_pubcooldown;true};3600s}{void;{channeledit;629606801469603855;{lb}"name": "🍻Бар «{args}»"{rb}}};Не прошёл кулдаун!}

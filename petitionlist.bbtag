@@ -1,0 +1,30 @@
+{set;~page;{args}}
+{if;{get;~page};<=;0;Неверный номер страницы!{return}}
+{set;~lastpageremainder;{math;%;{length;{get;_petitions}};{get;_tablecount}}}
+{set;~fullpagescount;{parseint;{math;/;{length;{get;_petitions}};{get;_tablecount}}}}
+{set;~totalpagescount;{get;~fullpagescount}}
+{if;{get;~lastpageremainder};!=;0;{set;~totalpagescount;{math;+;{get;~totalpagescount};1}}}
+{if;{get;~page};>;{get;~totalpagescount};Достигнут предел массива присланных петиций {return}}
+{
+    function;
+    pageview;
+    {
+        if;
+        {get;~page};
+        <=;
+        {get;~fullpagescount};
+        {set;~num;{get;_tablecount}};
+        {set;~num;{get;~lastpageremainder}}
+    }
+    {inject;{lb}embed{semi}{lb}embedbuild{semi}color:ea4b00{semi}
+        title:Страница {args;0} из {get;~totalpagescount}{semi}
+            {for;~index;0;<;{get;~num};
+            fields.name:Заявление №{math;+;1;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}} от {username;{get;_petitionusers;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}}{semi}
+            fields.value:[{substring;{jsonget;{get;_petitions;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}};description};0;35}]({get;_petitionlinks;
+{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}){newline}**{get;_petitionstates;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}**{semi}
+            }
+        {rb}
+  {rb}
+  }
+}
+{func.pageview;{get;~page}}

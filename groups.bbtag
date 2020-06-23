@@ -1,0 +1,20 @@
+{if;{args;0};==;list;
+**Список групп ролей**
+```
+{for;~index;0;<;{length;{get;_rolesgroups}};
+{realpad;{get;_rolesgroups;{get;~index}};30;.;right}{realpad;{length;{get;_{get;_rolesgroups;{get;~index}}}};5;.;left}{newline}}
+```;
+{if;{args;0};==;addgroup;
+{if;contains;{get;_rolesgroups};{args;1;n};Такая группа ролей уже существует.;
+{push;_rolesgroups;{args;1;n}}{set;_{args;1;n};[]}};
+{if;{args;0};==;removegroup;
+{if;contains;{get;_rolesgroups};{args;1;n};
+Расформирована группа ролей `{join;{splice;{get;_rolesgroups};{indexof;{get;_rolesgroups};{args;1;n}};1};}`{set;_{args;1;n};};Такой группы ролей и не было.}; 
+{if;{args;0};==;linkroles;
+{if;{get;_rolesgroups};contains;{args;1};
+{for;~index;2;<;{argslength};{push;_{args;1};{args;{get;~index}}}}  
+;Группы ролей не обнаружено}
+}
+}
+}
+}

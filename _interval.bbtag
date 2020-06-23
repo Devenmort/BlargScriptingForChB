@@ -1,0 +1,24 @@
+{set;~temprolesarrayname;{get;_rolesarrayname}}
+{set;~temprolesarraydescription;{get;_rolesarraydescription}}
+{set;~temprolesarrayids;{get;_roleids}}
+{reverse;{get;~temprolesarrayids}}
+{reverse;{get;~temprolesarrayname}}
+{reverse;{get;~temprolesarraydescription}}
+{edit;632669952511442975;716451892342816809;;
+{embedbuild;color:ea4b00;title:Пользовательские роли;
+description:Эти роли вы можете добавить с помощью команды `?selfrole X`, где X - название роли. Рядом с ролью указано количество пользователей, которые имеют её на данный момент;
+fields.name:1. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:2. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:3. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:4. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:5. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:6. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:7. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+}}

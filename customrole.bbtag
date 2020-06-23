@@ -1,0 +1,17 @@
+{set;~bool;false}
+{set;~roleidstemp;{get;_roleids}}
+{for;~index;0;<;7;
+    {if;{rolename;{get;~roleidstemp;{get;~index}}}
+        ;==;
+        {args}
+        ;{set;~bool;true}{set;~thisrole;{get;~roleidstemp;{get;~index}}};
+    }
+}
+    {void;{if;{get;~bool};
+        {if;{userhasrole;{get;~thisrole}};
+            {set;~IndianCodeVar;1}{roleremove;{get;~thisrole}};
+            {set;~IndianCodeVar;2}{addrole;{get;~thisrole}}
+        };{set;~IndianCodeVar;3}}}
+{if;{get;~IndianCodeVar};==;2;Держи роль.}
+{if;{get;~IndianCodeVar};==;1;Роль забрал.}
+{if;{get;~IndianCodeVar};==;3;Такой роли нет вроде как <:pepeweird:631179024626089984>}

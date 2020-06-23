@@ -1,0 +1,3 @@
+{void;{set;~usrs;{argsarray}}
+{for;~index;1;<;{length;{get;~usrs}};
+    {roleadd;{roleid;{get;~usrs;0}};{userid;{get;~usrs;{get;~index}}}}}}

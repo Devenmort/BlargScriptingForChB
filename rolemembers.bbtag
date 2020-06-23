@@ -1,0 +1,47 @@
+{set;~page;1}{set;~pagescount;{math;+;1;{parseint;{math;/;{length;{get;~roleesmembers}{set;~roleesmembers;{rolemembers;{args}}}
+{get;~roleesmembers}};{get;_tablecount}}}}}
+{function;div;{math;-;{paramsarray};{math;*;{get;_tablecount};{parseint;{math;/;{paramsarray};{get;_tablecount}}}}}}
+{function;pageview;
+    {if;<=;{get;~page};{parseint;{math;/;{length;{get;~roleesmembers}
+{get;~roleesmembers}};{get;_tablecount}}};{set;~num;{get;_tablecount}};{if;==;0;{func.div;{length;{get;~roleesmembers}
+{get;~roleesmembers}}};{set;~page;1};{set;~num;{func.div;{length;{get;~roleesmembers}
+{get;~roleesmembers}}}}}}
+    {inject;{lb}set{semi}~msgid{semi}{lb}send{semi}{lb}channelid{rb}{semi}{semi}{lb}embedbuild{semi}
+        footer.text:Страница {get;~page}/{lb}get{semi}~pagescount{rb}{semi}
+        color:{lb}color{semi}[234,75,0]{semi}hex{rb}{semi}
+            description:{for;~index;0;<;{get;~num};{username;{get;~roleesmembers;{math;+;{math;*;{get;_tablecount};{math;-;{get;~page};1}};{get;~index}}}}{lb}newline{rb}}{semi}
+        {rb}
+  {rb}
+  {rb}
+  }
+}
+{function;pageedit;
+{reactremove;{get;~msgid};◀❌▶}
+    {if;<=;{get;~page};{parseint;{math;/;{length;{username;{get;~roleesmembers}}
+{get;~roleesmembers}};{get;_tablecount}}};{set;~num;{get;_tablecount}};{if;==;0;{func.div;{length;{get;~roleesmembers}
+{get;~roleesmembers}}};{set;~page;1};{set;~num;{func.div;{length;{get;~roleesmembers}
+{get;~roleesmembers}}}}}}
+    {inject;{lb}edit{semi}{lb}channelid{rb}{semi}{lb}get{semi}~msgid{rb}{semi}{lb}embedbuild{semi}
+        footer.text:Страница {get;~page}/{lb}get{semi}~pagescount{rb}{semi}
+        color:{lb}color{semi}[234,75,0]{semi}hex{rb}{semi}
+            description:{for;~index;0;<;{get;~num};{username;{get;~roleesmembers;{math;+;{math;*;{get;_tablecount};{math;-;{get;~page};1}};{get;~index}}}}{lb}newline{rb}}{semi}
+  {rb}
+  {rb}
+  }
+}
+{func.pageview;{get;~page}}
+{reactadd;{channelid};{get;~msgid};◀❌▶}
+{set;~loop;0}
+{while;{get;~loop};==;0;
+  {set;~reaction2;
+    {waitreaction;{get;~msgid};{userid};◀❌▶;true;300}}
+
+  {switch;{get;~reaction2;3};◀;{void;{decrement;~page}}{if;{get;~page};<=;0;{set;~page;{math;+;1;{parseint;{math;/;{length;{get;~roleesmembers}
+{get;~roleesmembers}};{get;_tablecount}}}}}};▶;{void;{increment;~page}}{if;{get;~page};>;{math;+;1;{parseint;{math;/;{length;{get;~roleesmembers}
+{get;~roleesmembers}};{get;_tablecount}}}};{set;~page;1}};❌;{set;~loop;1}
+   } 
+  {if;{get;~loop};==;0;
+  {func.pageedit;{get;~page}}
+  }
+}
+{reactremoveall;{channelid};{get;~msgid}}{delete;{channelid};{get;~msgid}}{delete}

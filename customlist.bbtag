@@ -1,0 +1,8 @@
+{set;~temprolesarrayname;{get;_rolesarrayname}}{reverse;{get;~temprolesarrayname}}{set;~tempids;{get;_roleids}}{reverse;{get;~tempids}}```
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}
+{realpad;{pop;{get;~temprolesarrayname}};30;;right}{realpad;{length;{rolemembers;{pop;{get;~tempids}}}};3;;left}```

@@ -1,0 +1,7 @@
+{dm;{get;_petitionusers;{math;-;{args;0};1}};
+Вы получили ответ на своё обращение:
+> {args;1;n}
+
+Ваше обращение:;
+{get;_petitions;{math;-;{args;0};1}}
+}

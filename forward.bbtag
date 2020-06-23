@@ -1,0 +1,18 @@
+{set;~messagevote;{send;630017564134735879;;
+{embedbuild;
+title:{jsonget;{get;_petitions;{math;-;{args;0};1}};title};
+description:{jsonget;{get;_petitions;{math;-;{args;0};1}};description};
+color:fbe337;
+thumbnail.url:{jsonget;{get;_petitions;{math;-;{args;0};1}};thumbnail.url}
+}
+}
+} {reactadd;630017564134735879;{get;~messagevote};✅❌}
+{timer;{set;~no;{math;-;{length;{reactlist;630017564134735879;{get;~messagevote};❌}};1}}{set;~yes;{math;-;
+{length;{reactlist;630017564134735879;{get;~messagevote};✅}};1}}{if;{get;~yes};<=;{get;~no};{set;~footer;Голосование не прошло.}
+{set;~color;d72d16};{if;{math;+;{get;~yes};{get;~no}};<;10;
+{set;~footer;Голосование не прошло. Не набран кворум}{set;~color;d72d16};{set;~footer;Голосование прошло.}
+{set;~color;4fe107}}}
+{void;{send;629594751716556817;;{embedbuild;title:Результат голосования;description:**Идея №{args;0}** 
+{jsonget;{get;_petitions;{math;-;{args;0};1}};description};
+fields.name:Голосов «За»;fields.value:{get;~yes};fields.inline:true;fields.name:Голосов «Против»;fields.value:{get;~no}
+;fields.inline:true;color:{get;~color};footer.text:{get;~footer}}}};24h}

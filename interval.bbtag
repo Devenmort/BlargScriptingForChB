@@ -1,0 +1,30 @@
+{set;~temprolesarrayname;{get;_rolesarrayname}}
+{set;~temprolesarraydescription;{get;_rolesarraydescription}}
+{set;~temprolesarrayids;{get;_roleids}}
+{reverse;{get;~temprolesarrayids}}
+{reverse;{get;~temprolesarrayname}}
+{reverse;{get;~temprolesarraydescription}}
+{edit;632669952511442975;658361919044059142;;
+{embedbuild;color:3498db;title:Пользовательские роли;
+description:Эти роли вы можете добавить с помощью команды `?selfrole X`, где X - название роли. Рядом с ролью указано количество пользователей, которые имеют её на данный момент;
+fields.name:1. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:2. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:3. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:4. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:5. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:6. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:7. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+}}
+{edit;714226411388272802;716676799777603634;;{embedbuild;color:ea4b00;
+description:Если у вас есть какие-либо идеи по развитию сервера, пожелания или замечания, то вы можете отправить модераторам сервера своё обращение через команду ?idea <текст обращения>.
+
+Модераторы сервера:
+{set;~vachtery;{rolemembers;Вахтёр}}{for;~index;0;<;{length;{get;~vachtery}};{usermention;{get;~vachtery;{get;~index}}}{newline}}
+Призывать всех сразу можно в крайних случаях с помощью роли <@&632253362531991572>.}}

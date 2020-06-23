@@ -1,0 +1,15 @@
+{set;~have;false}
+{for;~index;0;<;{length;{get;_bingousers}};{if;{get;_bingousers;{get;~index}};==;{userid;{args}};
+{set;~have;true}{set;~usernum;{get;~index}}}}
+{if;{get;~have};
+{embed;{embedbuild;
+title:Лотерейный билет;description:Билет пользователя {username;{args}};
+fields.name:Поле 1;{set;~tempbingoarr;{get;_bingolists0;{get;~usernum}}}
+fields.value:```{for;~indexxx;0;<;3;{for;~index;0;<;5;{realpad;{get;~tempbingoarr;{math;+;{math;*;5;{get;~indexxx}};{get;~index}}};5; ;right}}{newline}}```;
+fields.name:Поле 2;{set;~tempbingoarr;{get;_bingolists1;{get;~usernum}}}
+fields.value:```{for;~indexxx;0;<;3;{for;~index;0;<;5;{realpad;{get;~tempbingoarr;{math;+;{math;*;5;{get;~indexxx}};{get;~index}}};5; ;right}}{newline}}```;
+fields.name:Поле 3;{set;~tempbingoarr;{get;_bingolists2;{get;~usernum}}}
+fields.value:```{for;~indexxx;0;<;3;{for;~index;0;<;5;{realpad;{get;~tempbingoarr;{math;+;{math;*;5;{get;~indexxx}};{get;~index}}};5; ;right}}{newline}}```;
+color:fbe337;
+}}
+;Нэт билет!}

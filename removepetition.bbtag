@@ -1,0 +1,7 @@
+{if;{argslength};!=;1;Укажите номер петиции{return}}
+{if;{args;0};>;{length;{get;_petitions}};Некорректный номер петиции!{return}}
+{if;{args;0};<;0;Некорректный номер петиции!{return}}
+{splice;_petitions;{math;-;{args;0};1};1}
+{splice;_petitionusers;{math;-;{args;0};1};1}
+{splice;_petitionlinks;{math;-;{args;0};1};1}
+{splice;_petitionstates;{math;-;{args;0};1};1}

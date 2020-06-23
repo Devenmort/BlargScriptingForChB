@@ -1,0 +1,15 @@
+{set;~numb;{math;+;1;{length;{get;_petitions}}}}
+{set;~embed;{embedbuild;title:Заявление №{get;~numb};
+    description:{args};
+    color:fbe337;
+    thumbnail.url:https://cdn.discordapp.com/attachments/704498181374869564/709893979927478382/quest.png;
+    author.name:{username};
+    author.url:https://discordapp.com/channels/{guildid}/{channelid}/{messageid};
+    author.icon_url:{useravatar};
+    timestamp:{time;YYYY-MM-DD HH:mm}
+}}
+{push;{get;_petitions};{get;~embed}}
+{push;{get;_petitionusers};{userid}}
+{push;{get;_petitionlinks};https://discordapp.com/channels/549627903965528075/629594751716556817/{send;629594751716556817;;{get;~embed}}}
+{push;{get;_petitionstates};Новое}
+Ваше обращение зарегистрировано под номером {get;~numb}.

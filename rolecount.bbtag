@@ -1,0 +1,1 @@
+{length;{rolemembers;{args}}}/{length;{guildmembers}} ({math;*;{math;/; {length;{rolemembers;{args}}};{length;{guildmembers}}};100}%)

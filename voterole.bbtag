@@ -1,0 +1,74 @@
+{set;~msgidd;{send;{channelid};Вы уверены, что хотите предложить эту роль для голосования?;{embedbuild;title:{args;0};description:{args;1;n};color:ea4b00}}}
+{reactadd;{channelid};{get;~msgidd};✅❌}
+{set;~reaction1;{waitreaction;{get;~msgidd};{userid};✅❌;true;100}}
+{if;{get;~reaction1;3};==;✅;✅{if;{indexof;{get;_cdids};{userid}};==;-1;{if;{get;_roletimer};{set;_roletimer;false}{timer;{set;_roletimer;true};6h}{push;_cdids;{userid}}{timer;
+  {reverse;{get;_cdids}}{void;{pop;_cdids}}{reverse;{get;_cdids}};336h}
+{set;~link{userid};{send;630017564134735879;;{embedbuild;color:3498db;title:Голосование за добавление роли.;
+description:Пользователь {usermention} предлагает добавить следующую роль:;
+fields.name:{args;0};
+fields.value:{args;1;n};
+footer.icon_url:https://cdn.discordapp.com/attachments/704498181374869564/713399505852170300/atencion.png;
+footer.text:Внимание! Если Вы проголосуете за данную роль, и она пройдёт голосование, то Вы получите эту роль автоматически.
+}}}{reactadd;630017564134735879;{get;~link{userid}};✅}
+{timer;
+{if;{length;{reactlist;630017564134735879;{get;~link{userid}};✅}};>;10;
+{set;~tempcount;{length;{rolemembers;{get;_roleids;0}}}}
+{set;~tempid;0}
+{for;~index;0;<;7;
+  {if;{length;{rolemembers;{get;_roleids;{get;~index}}}};<;{get;~tempcount};{set;~tempcount;{length;{rolemembers;{get;_roleids;{get;~index}}}}}{set;~tempid;{get;~index}}}} 
+{if;{length;{reactlist;630017564134735879;{get;~link{userid}};✅}};>;{get;~tempcount};
+{roledelete;{get;_roleids;{get;~tempid}}}
+{set;~temparray;[]}{for;~counter;0;<;7;{if;{get;~counter};==;{get;~tempid};{push;~temparray;{args;0}};{push;~temparray;{get;_rolesarrayname;{get;~counter}}}}}
+{set;_rolesarrayname;{get;~temparray}}
+{set;~temparray;[]}{for;~counter;0;<;7;{if;{get;~counter};==;{get;~tempid};{push;~temparray;{args;1;n}};{push;~temparray;{get;_rolesarraydescription;{get;~counter}}}}}
+{set;_rolesarraydescription;{get;~temparray}}
+{set;~temparray;[]}{for;~counter;0;<;7;{if;{get;~counter};==;{get;~tempid};{push;~temparray;{rolecreate;{args;0};;0;true}};{push;~temparray;{get;_roleids;{get;~counter}}}}}
+{set;_roleids;{get;~temparray}}
+{set;~anotherfuckingtemparraysukablyat;{reactlist;630017564134735879;{get;~link{userid}};✅}}
+{void;{for;~tempj;0;<;{length;{get;~anotherfuckingtemparraysukablyat}};
+  {if;{get;~anotherfuckingtemparraysukablyat;{get;~tempj}};!=;134133271750639616;{addrole;{get;_roleids;{get;~tempid}};{get;~anotherfuckingtemparraysukablyat;{get;~tempj}}}}
+}}
+{set;~temprolesarrayname;{get;_rolesarrayname}}
+{set;~temprolesarraydescription;{get;_rolesarraydescription}}
+{set;~temprolesarrayids;{get;_roleids}}
+{reverse;{get;~temprolesarrayids}}
+{reverse;{get;~temprolesarrayname}}
+{reverse;{get;~temprolesarraydescription}}
+{edit;632669952511442975;658361919044059142;;
+{embedbuild;color:3498db;title:Пользовательские роли;
+description:Эти роли вы можете добавить с помощью команды `?selfrole X`, где X - название роли. Рядом с ролью указано количество пользователей, которые имеют её на данный момент;
+fields.name:1. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:2. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:3. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:4. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:5. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:6. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+fields.name:7. {pop;{get;~temprolesarrayname}} - {length;{rolemembers;{pop;{get;~temprolesarrayids}}}};
+fields.value:{pop;{get;~temprolesarraydescription}};
+}}
+
+
+{void;{send;630017564134735879;;{embedbuild;color:4fe107;title:Результат голосования;
+	description:Роль `{args;0}` была добавлена;footer.text:Роль была предложена пользователем {username}}}}
+;{reactadd;630017564134735879;{get;~link{userid}};🔴}
+Ваше голосование за роль "{args;0}" не прошло, {usermention}: в общем списке ролей минимальное количество владельцев роли - {get;~tempcount}. 
+За вашу роль должно проголосовать большее количество людей{void;{send;630017564134735879;;{embedbuild;color:d72d16;title:Результат голосования;
+	description:Роль `{args;0}` не прошла голосования. Причина: другие роли поддерживает большее число людей.;
+	footer.text:Роль была предложена пользователем {username}}
+}}}
+;
+{reactadd;630017564134735879;{get;~link{userid}};🔴}
+{void;{send;630017564134735879;;
+{embedbuild;color:d72d16;title:Результат голосования;description:Роль `{args;0}` не прошла голосования. Причина: не пройден минимальный порог голосов.;
+footer.text:Роль была предложена пользователем {username}}}}
+Ваше голосование за роль "{args;0}" не прошло, {usermention}: не пройден минимальный порог голосов (10)}
+;48h}
+;Общий кулдаун ещё не прошёл.};Не прошёл ещё личный кулдаун!}
+
+{delete;{channelid};{get;~msgidd}};{delete;{channelid};{get;~msgidd}}}

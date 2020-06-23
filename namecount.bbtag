@@ -1,0 +1,7 @@
+{set;~chislo;0}
+    {set;~chbeshniki;{guildmembers}}
+            {for;~indexxx;0;<;{length;{get;~chbeshniki}};
+    {if;{usernick;{get;~chbeshniki;{get;~indexxx}}};==;{args};{void;{increment;~chislo}}
+    }
+}
+{get;~chislo}
