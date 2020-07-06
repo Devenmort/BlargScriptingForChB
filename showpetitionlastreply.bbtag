@@ -2,4 +2,4 @@
 {if;{args;0};>;{length;{get;_petitionreplies}};Некорректный номер петиции!{return}}
 {if;{args;0};<;0;Некорректный номер петиции!{return}}
 {set;~petition_number;{math;-;{args};1}}
-{get;_petitionreplies;{get;~petition_number}}
+{if;{get;_petitionreplies;{get;~petition_number}};==;;Ответа на петицию не поступало;{get;_petitionreplies;{get;~petition_number}}}
