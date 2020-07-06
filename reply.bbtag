@@ -1,7 +1,11 @@
-{dm;{get;_petitionusers;{math;-;{args;0};1}};
+{set;~petition_number;{math;-;{args;0};1}}
+{dm;{get;_petitionusers;{get;~petition_number}};
 Вы получили ответ на своё обращение:
-> {args;1;n}
+> {args;2;n}
 
 Ваше обращение:;
-{get;_petitions;{math;-;{args;0};1}}
+{get;_petitions;{get;~petition_number}}
 }
+
+{execcc;setpetitionstate;{args;0} {args;1}}
+{splice;_petitionreplies;{get;~petition_number};1;{args;2;n}}

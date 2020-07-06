@@ -12,4 +12,5 @@
 {push;{get;_petitionusers};{userid}}
 {push;{get;_petitionlinks};https://discordapp.com/channels/549627903965528075/629594751716556817/{send;629594751716556817;;{get;~embed}}}
 {push;{get;_petitionstates};Новое}
+{push;{get;_petitionreplies};}
 Ваше обращение зарегистрировано под номером {get;~numb}.
