@@ -1,3 +1,4 @@
+{if;{argslength};!=;1;Неверное количество присланных аргументов, принимается только один аргумент - номер петиции{return}}
 {set;~page;{args}}
 {if;{get;~page};<=;0;Неверный номер страницы!{return}}
 {set;~lastpageremainder;{math;%;{length;{get;_petitions}};{get;_tablecount}}}
