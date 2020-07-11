@@ -6,26 +6,30 @@
 {set;~totalpagescount;{get;~fullpagescount}}
 {if;{get;~lastpageremainder};!=;0;{set;~totalpagescount;{math;+;{get;~totalpagescount};1}}}
 {if;{get;~page};>;{get;~totalpagescount};Достигнут предел массива присланных петиций {return}}
+
 {
-    function;
-    pageview;
-    {
-        if;
-        {get;~page};
-        <=;
-        {get;~fullpagescount};
-        {set;~num;{get;_tablecount}};
-        {set;~num;{get;~lastpageremainder}}
-    }
-    {inject;{lb}embed{semi}{lb}embedbuild{semi}color:ea4b00{semi}
-        title:Страница {args;0} из {get;~totalpagescount}{semi}
-            {for;~index;0;<;{get;~num};
-            fields.name:Заявление №{math;+;1;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}} от {username;{get;_petitionusers;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}}{semi}
-            fields.value:[{substring;{jsonget;{get;_petitions;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}};description};0;35}]({get;_petitionlinks;
-{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}){newline}**{get;_petitionstates;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}**{semi}
-            }
-        {rb}
-  {rb}
-  }
+    if;
+    {get;~page};
+    <=;
+    {get;~fullpagescount};
+    {set;~num;{get;_tablecount}};
+    {set;~num;{get;~lastpageremainder}}
 }
-{func.pageview;{get;~page}}
+
+{set;~embedentity;{lb}"fields":[}
+{for;~index;1;<;{get;~num};
+    {set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek"{rb},}
+}
+
+{set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek"{rb}]{rb}}
+{jsonset;~embedentity;color;15354624;create}
+{jsonset;~embedentity;title;Страница {args;0} из {get;~totalpagescount};create}
+{
+    for;~index;0;<;{get;~num};
+    {jsonset;~embedentity;fields.{get;~index}.name;Заявление №{math;+;1;{math;+;{get;~index};
+            {math;*;{get;_tablecount};{math;-;{args;0};1}}}} от {username;{get;_petitionusers;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}};create}
+    {jsonset;~embedentity;fields.{get;~index}.value;[{substring;{jsonget;{get;_petitions;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}};description};0;35}]({get;_petitionlinks;
+{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}){newline}**{get;_petitionstates;{math;+;{get;~index};{math;*;{get;_tablecount};{math;-;{args;0};1}}}}**;create}
+}
+
+{embed;{get;~embedentity}}
