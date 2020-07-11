@@ -8,4 +8,4 @@
 }
 
 {execcc;setpetitionstate;{args;0} {args;1}}
-{splice;_petitionreplies;{get;~petition_number};1;{args;2;n}}
+{void;{splice;_petitionreplies;{get;~petition_number};1;{args;2;n}}}
