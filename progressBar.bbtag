@@ -1,0 +1,68 @@
+{func;classicDiv;
+    {floor;{math;/;{params;0};{params;1}}}
+}
+
+{func;initProgressData;
+    {if;{paramslength};<;2;initProgressData принимает два аргумента: <стиль отображения> <число шагов>{return}}
+    {set;~reactionType;{params;0}}
+    {if;{get;~reactionType};==;Embed;
+        {set;~statusMessage;{send;{channelid};
+            {embedbuild;
+                title:Команда бларга;
+                description:{messagetext};
+                footer.text:0%
+            }
+        }}
+    }
+
+    {set;~cnt;0}{set;~stepsamount;{params;1}}
+    {set;~progressEmojis;[":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", ":keycap_ten:"]}
+    {set;~progressNumbers;[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
+
+    {if;{get;~stepsamount};>;9;{set;~stagesize;{func.classicDiv;{get;~stepsamount};10}};
+        {set;~stagesize;1}
+    }
+}
+
+
+{func;emitProgressReactionEmoji;
+    {if;{math;%;{params;0};{get;~stagesize}};==;0;
+        {reactadd;{channelid};{messageid};
+            {get;~progressEmojis;{math;-;{func.classicdiv;{params;0};{get;~stagesize}};1}}
+        }
+    }
+}
+
+{func;emitProgressReactionEmbed;
+    {if;{math;%;{params;0};{get;~stagesize}};==;0;
+        {edit;{channelid};{get;~statusMessage};
+            {embedbuild;
+                title:Команда бларга;
+                description:{messagetext};
+                footer.text:{get;~progressNumbers;{math;-;{func.classicdiv;{params;0};{get;~stagesize}};1}}%
+            }
+        }
+    }
+}
+
+{func;emitProgressReaction;
+    {if;{get;~reactionType};==;Embed;
+        {func.emitProgressReactionEmbed;{params;0}};
+        {func.emitProgressReactionEmoji;{params;0}}
+    }
+}
+
+{func;advanceProgress;
+    {if;{paramslength};<;1;{set;~incr;1};{set;~incr;{params;0}}}
+    {void;{increment;~cnt;{get;~incr}}}
+    {if;{get;~cnt};>;{get;~stepsamount};Превышение числа шагов!{return}}
+    {func.emitProgressReaction;{get;~cnt}}
+}
+
+{func;finishProgress;
+    {if;{math;%;{get;~stepsamount};10};!=;0;
+        {func.emitProgressReaction;{math;+;{get;~stepsamount};{math;%;{get;~stepsamount};10}}}
+    }
+    Steps made: {get;~cnt}
+    Finished with this: https://discordapp.com/channels/{guildid}/{channelid}/{messageid}
+}
