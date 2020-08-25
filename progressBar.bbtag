@@ -2,6 +2,10 @@
     {floor;{math;/;{params;0};{params;1}}}
 }
 
+{func;ceilDiv;
+    {ceil;{math;/;{params;0};{params;1}}}
+}
+
 {func;initProgressData;
     {if;{paramslength};<;2;initProgressData принимает два аргумента: <стиль отображения> <число шагов>{return}}
     {set;~reactionType;{params;0}}
@@ -19,7 +23,7 @@
     {set;~progressEmojis;[":one:", ":two:", ":three:", ":four:", ":five:", ":six:", ":seven:", ":eight:", ":nine:", ":keycap_ten:"]}
     {set;~progressNumbers;[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
 
-    {if;{get;~stepsamount};>;9;{set;~stagesize;{func.classicDiv;{get;~stepsamount};10}};
+    {if;{get;~stepsamount};>;9;{set;~stagesize;{func.ceilDiv;{get;~stepsamount};10}};
         {set;~stagesize;1}
     }
 }
@@ -61,8 +65,10 @@
 
 {func;finishProgress;
     {if;{math;%;{get;~stepsamount};10};!=;0;
-        {func.emitProgressReaction;{math;+;{get;~stepsamount};{math;%;{get;~stepsamount};10}}}
+        {func.emitProgressReaction;{math;*;{get;~stagesize};10}}
     }
     Steps made: {get;~cnt}
+    Stage size: {get;~stagesize}
+
     Finished with this: https://discordapp.com/channels/{guildid}/{channelid}/{messageid}
 }
