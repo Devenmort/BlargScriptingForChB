@@ -1,7 +1,8 @@
+{if;{argslength};<;2;Неправильное использование команды: нужно указать название роли и её описание в кавычках. Если название роли состоит более чем из двух слов, то его тоже нужно передавать в кавычках.{return}}
 {set;~msgidd;{send;{channelid};Вы уверены, что хотите предложить эту роль для голосования?;{embedbuild;title:{args;0};description:{args;1;n};color:ea4b00}}}
 {reactadd;{channelid};{get;~msgidd};✅❌}
 {set;~reaction1;{waitreaction;{get;~msgidd};{userid};✅❌;true;100}}
-{if;{get;~reaction1;3};==;✅;✅{if;{indexof;{get;_cdids};{userid}};==;-1;{if;{get;_roletimer};{set;_roletimer;false}{timer;{set;_roletimer;true};6h}{push;_cdids;{userid}}{timer;
+{if;{get;~reaction1;3};==;✅;✅{if;{indexof;{get;_cdids};{userid}};==;-1;{if;{get;_roletimer};{set;_roletimer;false}{timer;{set;_roletimer;true};24h}{push;_cdids;{userid}}{timer;
   {reverse;{get;_cdids}}{void;{pop;_cdids}}{reverse;{get;_cdids}};336h}
 {set;~link{userid};{send;630017564134735879;;{embedbuild;color:3498db;title:Голосование за добавление роли.;
 description:Пользователь {usermention} предлагает добавить следующую роль:;

@@ -1,0 +1,13 @@
+{if;{argslength};<;2;Принимаются следующие аргументы: <Поле поиска> <Регулярное выражение>. Поле поиска может быть: userid, text, state, reply{return}}
+
+{switch;{args;0};
+    userid;{set;~name;petitionusers};
+    text;{set;~name;petitions};
+    state;{set;~name;petitionstates};
+    reply;{set;~name;petitionreplies};
+    Неверное указание аргументов{return}
+}
+{for;~i;0;<;{length;{get;_{get;~name}}};1;
+    {if;
+        {inject;{lb}regextest{semi}{lb}get{semi}_{get;~name}{semi}{lb}get{semi}~i{rb}{rb}{semi}/{args;1;n}/i{rb}};{math;+;{get;~i};1}{semi}}
+}

@@ -1,0 +1,5 @@
+Petitions array length: {length;{get;_petitions}}
+Petitiousers array length: {length;{get;_petitionusers}}
+Petitionlinks array length: {length;{get;_petitionlinks}}
+Petitionstates array length: {length;{get;_petitionstates}}
+Petition replies length: {length;{get;_petitionreplies}}

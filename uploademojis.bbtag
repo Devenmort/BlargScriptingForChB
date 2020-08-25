@@ -1,0 +1,82 @@
+
+Статик:
+{pop;{regexmatch;{get;~i};/<:(.+):/i}}
+https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.png?v=1
+
+b!test {foreach;~i;_CheBeEmojis;{emojicreate;{pop;{regexmatch;{get;~i};/<:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.png?v=1}}
+
+
+Динамик:
+{pop;{regexmatch;{get;~i};/<a:(.+):/i}}
+https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.gif?v=1
+
+b!test {foreach;~i;_CheBeEmojis;{emojicreate;{pop;{regexmatch;{get;~i};/<a:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.gif?v=1}}
+
+
+Итоговое:
+Залив полной копии:
+b!test {foreach;~i;_CheBeEmojis;
+    {if;{regextest;{get;~i};/<a:[^:]+:.+>/i};
+        {emojicreate;{pop;{regexmatch;{get;~i};/<a:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.gif?v=1};
+        {emojicreate;{pop;{regexmatch;{get;~i};/<:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.png?v=1}
+}}
+
+b!test {execcc;progressBar}{func.initProgressData;Embed;{length;{get;_CheBeEmojis}}}{foreach;~i;_CheBeEmojis;
+    {if;{regextest;{get;~i};/<a:[^:]+:.+>/i};
+        {emojicreate;{pop;{regexmatch;{get;~i};/<a:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.gif?v=1}
+    }{func.advanceProgress}
+}{func.finishProgress}
+
+Залив только выбранных:
+b!test {execcc;progressBar}
+{func.initProgressData;{length;{get;_favoriteEmojis}}}
+{foreach;~i;_CheBeEmojis;
+        {switch;{pop;{regexmatch;{get;~i};/<:(.+):/i}};
+            {get;_favoriteEmojis};{emojicreate;{pop;{regexmatch;{get;~i};/<:(.+):/i}};https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.png?v=1}{semi}{func.advanceProgress}
+        }
+}{func.finishProgress}
+
+{execcc;progressBar}
+{func.initProgressData;Emoji;{length;{get;_favoriteEmojis}}}
+{foreach;~i;_CheBeEmojis;
+        {switch;{pop;{regexmatch;{get;~i};/<:(.+):/i}};
+            {get;_favoriteEmojis};
+            {sleep;0.1s}{func.advanceProgress}
+        }
+}{func.finishProgress}
+
+
+?test {set;_favoriteEmojis;["small_green_triangle", "BLM","dimon","feelsSadMef","feelsMef","zhabka","TomStare","potatoLove","yes","lab_drunk","yoba_pled","pepe_clown","kek","slowpoke","BLM_WTF","thunked","suicide","elrisitas_kek","yoba","AARGH","ululu","madcar","Oh_my","CoolStoryLab","FeelsDumbMan","Despair","wutcat","uyuyu","despaircat","STONKS","praise","pepeweird","FeelsGood","PeepoShy","ndola","wut","spravedlivo","yelling","PepeWithJuiceBox","peeposhrug","MonkaHmm","cry_cat","durka","feelsKCHHHH","wojakdumb","clowngun","pepewidesmile"]}
+
+Тест:
+b!test {foreach;~i;_CheBeEmojis;
+    {if;
+        {regextest;{get;~i};/_WheelChair/i};
+        {emojicreate;
+            {pop;{regexmatch;{get;~i};/<a:(.+):/i}};
+            https://cdn.discordapp.com/emojis/{pop;{regexmatch;{get;~i};/:(\d+)>/i}}.gif?v=1}}
+}
+
+Удаление:
+    Анимированные:
+?test {foreach;~i;{emojis};
+    {emojidelete;{pop;{regexmatch;{get;~i};/<a:[^:]+:(\d+)>/i}}}
+}Done deleting animated emojis
+    Статические:
+?test {foreach;~i;{emojis};
+    {emojidelete;{pop;{regexmatch;{get;~i};/<:[^:]+:(\d+)>/i}}}
+}Done deleting static emojis
+    Все:
+?test {foreach;~i;{emojis};
+    {emojidelete;{pop;{regexmatch;{get;~i};/:(\d+)>/i}}}
+}Done deleting all emojis
+
+
+
+b!test {foreach;~i;_CheBeEmojis;
+    {if;{regextest;{get;~i};/<a:[^:]+:.+>/i};;
+        {switch;{pop;{regexmatch;{get;~i};/<:(.+):/i}};
+            {get;_favoriteEmojis};{pop;{regexmatch;{get;~i};/<:(.+):/i}}{semi}
+        }
+    }
+}

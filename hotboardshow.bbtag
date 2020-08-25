@@ -1,0 +1,47 @@
+{if;{argslength};!=;1;Неверное количество присланных аргументов, принимается только один аргумент - номер страницы в таблице рекордов{return}}
+{set;~page;{args}}
+{if;{get;~page};<=;0;Неверный номер страницы!{return}}
+{set;~tablecount;8}
+{set;~lastpageremainder;{math;%;{length;{get;_hotboard}};{get;~tablecount}}}
+{set;~fullpagescount;{parseint;{math;/;{length;{get;_hotboard}};{get;~tablecount}}}}
+{set;~totalpagescount;{get;~fullpagescount}}
+{if;{get;~lastpageremainder};!=;0;{set;~totalpagescount;{math;+;{get;~totalpagescount};1}}}
+{if;{get;~page};>;{get;~totalpagescount};Достигнут предел массива рекордов {return}}
+
+{
+    if;
+    {get;~page};
+    <=;
+    {get;~fullpagescount};
+    {set;~num;{get;~tablecount}};
+    {set;~num;{get;~lastpageremainder}}
+}
+
+{jset;~tagtext;lang;ru}
+{set;~embedentity;{lb}"fields":[}
+{for;~index;1;<;{get;~num};
+    {set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb},}
+    {set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb},}
+    {set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb},}
+}
+
+{set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb},}
+{set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb},}
+{set;~embedentity;{get;~embedentity}{lb}"name":"kek","value":"kek","inline":"true"{rb}]{rb}}
+
+{jsonset;~embedentity;color;15354624;create}
+{jsonset;~embedentity;title;Страница {args;0} из {get;~totalpagescount};create}
+
+{for;~index;0;<;{get;~num};
+    {jsonset;~embedentity;fields.{math;*;{get;~index};3}.name;**{math;+;{get;~index};{math;+;1;{math;*;{math;-;{args;0};1};{get;~tablecount}}}}**;create}
+    {jsonset;~embedentity;fields.{math;*;{get;~index};3}.value;_;create}
+
+    {jsonset;~embedentity;fields.{math;+;1;{math;*;{get;~index};3}}.name;**{username;{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};userid}}**;create}
+    {jsonset;~embedentity;fields.{math;+;1;{math;*;{get;~index};3}}.value;[```Получение роли```](https://discord.com/channels/549627903965528075/{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};channelid1}/{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};messageid1});create}
+
+    {jsonset;~embedentity;fields.{math;+;2;{math;*;{get;~index};3}}.name;**{exec;Tconvert;{round;{math;/;{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};time};1000}}}**;create}
+    {jsonset;~embedentity;fields.{math;+;2;{math;*;{get;~index};3}}.value;[```Передача роли```](https://discord.com/channels/549627903965528075/{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};channelid2}/{jget;{get;_hotboard;{math;+;{get;~index};{math;*;{math;-;{args;0};1};{get;~tablecount}}}};messageid2});create}
+
+}
+
+{embed;{get;~embedentity}}
