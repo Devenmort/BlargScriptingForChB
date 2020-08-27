@@ -1,0 +1,17 @@
+{if;{argslength};==;0;
+    {foreach;~c;_favch{userid};<#{get;~c}>{newline}};
+    {switch;{args;0};
+        add;
+        {if;{get;~favch{userid}};contains;{channelid;{channelname;{args;1}}};Канал уже был добавлен в избранное;
+            {if;{channelid;{channelname;{args;1}}};==;No channel found;
+                Канал не обнаружен;
+                Канал добавлен в избранное{if;{get;_favch{userid}};==;;{set;_favch{userid};["{channelid;{channelname;{args;1}}}"]};{push;_favch{userid};{channelid;{channelname;{args;1}}}}}
+            }
+        };
+        remove;
+        {if;{get;_favch{userid}};contains;{channelid;{channelname;{args;1}}};
+            {void;{splice;_favch{userid};{indexof;{get;_favch{userid}};{channelid;{channelname;{args;1}}}};1
+            }};Такого канала не было в избранном
+        }
+    }
+}

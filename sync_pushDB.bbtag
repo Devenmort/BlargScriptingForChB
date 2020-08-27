@@ -1,0 +1,7 @@
+{set;~tmp;{lb}{rb}}
+{jset;~tmp;userid;{args;0}}
+{jset;~tmp;name;{args;1}}
+{jset;~tmp;colorRoleChB;{args;2}}
+{jset;~tmp;colorRoleUyut;{args;3}}
+{jset;~tmp;color;{args;4}}
+{push;@colorSyncDB;{get;~tmp}}

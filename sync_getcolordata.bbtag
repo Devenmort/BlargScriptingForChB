@@ -1,4 +1,3 @@
 {for;~i;0;<;{length;{get;@colorSyncDB}};1;
     {void;{splice;@colorSyncDB;{get;~i};1;{jset;{get;@colorSyncDB;{get;~i}};color;{rolecolor;{jget;{get;@colorSyncDB;{get;~i}};colorRoleChB}}}}}
 }Done
-
